@@ -1,0 +1,42 @@
+version: '2'
+services:
+  app:
+    build: ./interview
+    links:
+      - redis
+      - postgres
+      - mongo
+    depends_on:
+      - redis
+      - postgres
+      - mongo 
+    ports:
+      - "8080:8080"
+
+  redis:
+    build: ./redis
+    ports:
+      - "6379:6379"
+    entrypoint: redis-server --protected-mode no
+    restart: always
+
+  mongo:
+    build: ./mongo
+    ports:
+     - "27017:27017"
+    environment:
+      MONGODB_ADMIN_PASS: administrator
+      MONGODB_APPLICATION_DATABASE: iws
+      MONGODB_APPLICATION_USER: admin
+      MONGODB_APPLICATION_PASS: admin
+
+  postgres:
+    build: ./postgreSQL
+    ports:
+            - "5432:5432"
+    environment:
+      POSTGRES_DB: iws
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    restart: unless-stopped
