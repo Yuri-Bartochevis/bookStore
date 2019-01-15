@@ -20,14 +20,14 @@ Clone environment from github.
 ```bash
 $ sudo git clone https://github.com/Yuri-Bartochevis/BookStore.git
 ```
-and after that, you'll need to execute MAVEN
+and after that, you'll need to execute MAVEN "../interview"
 
 ```bash
 $ mvn clean install -U
 ```
 
 ## #Third and Last Step
-Execute Enviroment with docker compose
+Execute Enviroment with docker compose  "../bookStore"
 
 ```bash
 $ sudo docker-compose build
